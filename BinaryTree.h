@@ -8,6 +8,7 @@ public:
     T data;
     NodeType<T> *left;
     NodeType<T> *right;
+    void inOrder() const;
 };
 
 template<class T>
@@ -15,6 +16,7 @@ class BinaryTree {
 
 private:
     NodeType<T> *root;
+    int length;
 
 public:
     BinaryTree();
