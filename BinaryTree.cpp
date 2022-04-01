@@ -67,7 +67,8 @@ void BinaryTree<T>::retrieve(T &item, bool &found) const {
 
 template<class T>
 void BinaryTree<T>::preOrder() const {
-
+    root->preOrder();
+    cout << endl;
 } //preOrder
 
 template<class T>
@@ -78,7 +79,8 @@ void BinaryTree<T>::inOrder() const {
 
 template<class T>
 void BinaryTree<T>::postOrder() const {
-
+    root->postOrder();
+    cout << endl;
 } //postOrder
 
 template<class T>
@@ -116,8 +118,31 @@ void NodeType<T>::inOrder() const {
     if (left != NULL) {
         left->inOrder();
     } //if
-
 } //inOrder
+
+template<class T>
+void NodeType<T>::preOrder() const {
+    cout << data;
+    cout << " ";
+    if (right != NULL) {
+        right->preOrder();
+    } //if
+    if (left != NULL) {
+        left->preOrder();
+    } //if
+} //preOrder
+
+template<class T>
+void NodeType<T>::postOrder() const {
+    if (right != NULL) {
+        right->postOrder();
+    } //if
+    if (left != NULL) {
+        left->postOrder();
+    } //if
+    cout << data;
+    cout << " ";
+} //postOrder
 
 template class BinaryTree<int>;
 template class BinaryTree<float>;

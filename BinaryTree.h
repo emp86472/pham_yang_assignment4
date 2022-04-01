@@ -9,6 +9,9 @@ public:
     NodeType<T> *left;
     NodeType<T> *right;
     void inOrder() const;
+    void preOrder() const;
+    void postOrder() const;
+
 };
 
 template<class T>
