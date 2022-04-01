@@ -73,6 +73,7 @@ void BinaryTree<T>::preOrder() const {
 template<class T>
 void BinaryTree<T>::inOrder() const {
     root->inOrder();
+    cout << endl;
 } //inOrder
 
 template<class T>
@@ -110,7 +111,8 @@ void NodeType<T>::inOrder() const {
     if (right != NULL) {
         right->inOrder();
     } //if
-    cout << data << endl;
+    cout << data;
+    cout << " ";
     if (left != NULL) {
         left->inOrder();
     } //if
