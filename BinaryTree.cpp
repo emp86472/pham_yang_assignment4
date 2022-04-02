@@ -131,7 +131,21 @@ void BinaryTree<T>::deleteItem(T &key) {
 
 template<class T>
 void BinaryTree<T>::retrieve(T &item, bool &found) const {
-
+    if (root == NULL) {
+        cout << "List is empty!" << endl;
+    } //if
+    NodeType<T> *temp = root;
+    while (temp != NULL) {
+        if (temp->data == item) {
+            found = true;
+            return;
+        } else if (temp->data < item) {
+            temp = temp->right;
+        } else if (temp->data > item) {
+            temp = temp->left;
+        } //if
+    } //while
+    found = false;
 } //retrieve
 
 template<class T>
