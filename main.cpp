@@ -29,8 +29,7 @@ void run(int argc, char *argv[]) {
 
     file.close();
 
-    cout << "insert (i), delete (d), retrieve (r), length (l), in-order (n), pre-order (p),
-post-order (o), getNumSingleParent (s), getNumLeafNodes (f), getSumOfSubtrees (t), quit (q)" << endl;
+    cout << "insert (i), delete (d), retrieve (r), length (l), in-order (n), pre-order (p), post-order (o), getNumSingleParent (s), getNumLeafNodes (f), getSumOfSubtrees (t), quit (q)" << endl;
 
     T insert;
     T deleteItem;
@@ -62,7 +61,7 @@ post-order (o), getNumSingleParent (s), getNumLeafNodes (f), getSumOfSubtrees (t
         } // if
 
         if (command == 'l') { // length
-            cout << "Tree length: " << tree.getlength() << endl;
+            cout << "Tree length: " << tree.getLength() << endl;
             continue;
         } // if
 
@@ -82,7 +81,8 @@ post-order (o), getNumSingleParent (s), getNumLeafNodes (f), getSumOfSubtrees (t
             cout << "Item to be retrieved: ";
             cin >> retrieve;
             cout << endl;
-            tree.retrieve(retrieve);
+            bool b = true;
+            tree.retrieve(retrieve, b);
             continue;
         } // if
 
