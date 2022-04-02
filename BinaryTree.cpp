@@ -44,20 +44,89 @@ void BinaryTree<T>::insert(T &key) {
                 break;
             } else if (temp->data < key) {
                 pretemp = temp;
-                temp = temp->left;
-                placeRight = false;
-            } else if (temp->data > key) {
-                pretemp = temp;
                 temp = temp->right;
                 placeRight = true;
+            } else if (temp->data > key) {
+                pretemp = temp;
+                temp = temp->left;
+                placeRight = false;
             } //if
         } //while
     } //if
 } //insert
 
+/**
+ * Note: pretemp == NULL checks for first iteration
+ * The deleteRight bool allows us to decide which way
+ * pretemp should point to
+ */
 template<class T>
 void BinaryTree<T>::deleteItem(T &key) {
-
+    NodeType<T> *temp = root;
+    NodeType<T> *pretemp;
+    if (root == NULL) {
+        cout  << "The list is empty :c" << endl;
+    } //if
+    bool deleteRight = false;
+    while (temp != NULL) {
+        if (temp->data == key) {
+            //node we want to remove
+            if (temp->left == NULL && temp->right == NULL) {//leaf node
+                if (pretemp == NULL) {
+                    root = NULL;
+                } else if (deleteRight) {
+                    pretemp->right = NULL;
+                } else {
+                    pretemp->left = NULL;
+                } //if
+                delete temp;
+            } else if (temp->left == NULL) {//1 child
+                if (pretemp == NULL) {
+                    root = temp->right;
+                } else {
+                    if (deleteRight) {
+                        pretemp->right = temp->right;
+                    } else {
+                        pretemp->left = temp->right;
+                    } //if
+                } //if
+                delete temp;
+            } else if (temp->right == NULL) {//1 child
+                if (pretemp == NULL) {
+                    root = temp->left;
+                } else {
+                    if (deleteRight) {
+                        pretemp->right = temp->left;
+                    } else {
+                        pretemp->left = temp->left;
+                    } //if
+                } //if
+                delete temp;
+            } else { //if neither is null (2 children)
+                //find logical predecessor
+                pretemp = temp;
+                temp = temp->left;
+                while (temp->right != NULL) {
+                    temp = temp->right;
+                } //while
+                //recursive call to deleteItem
+                T value = temp->data;
+                this->deleteItem(value);
+                pretemp->data = value;
+            } //if
+            length--;
+            return;
+        } else if (temp->data < key) {
+            pretemp = temp;
+            temp = temp->right;
+            deleteRight = true;
+        } else if (temp->data > key) {
+            pretemp = temp;
+            temp = temp->left;
+            deleteRight = false;
+        } //if
+    } //while
+    cout << "Item not in list" << endl;
 } //deleteItem
 
 template<class T>
@@ -110,13 +179,13 @@ int BinaryTree<T>::getSumOfSubtrees(T value) const {
 
 template<class T>
 void NodeType<T>::inOrder() const {
-    if (right != NULL) {
-        right->inOrder();
+    if (left != NULL) {
+        left->inOrder();
     } //if
     cout << data;
     cout << " ";
-    if (left != NULL) {
-        left->inOrder();
+    if (right != NULL) {
+        right->inOrder();
     } //if
 } //inOrder
 
@@ -124,21 +193,21 @@ template<class T>
 void NodeType<T>::preOrder() const {
     cout << data;
     cout << " ";
-    if (right != NULL) {
-        right->preOrder();
-    } //if
     if (left != NULL) {
         left->preOrder();
+    } //if
+    if (right != NULL) {
+        right->preOrder();
     } //if
 } //preOrder
 
 template<class T>
 void NodeType<T>::postOrder() const {
-    if (right != NULL) {
-        right->postOrder();
-    } //if
     if (left != NULL) {
         left->postOrder();
+    } //if
+    if (right != NULL) {
+        right->postOrder();
     } //if
     cout << data;
     cout << " ";
