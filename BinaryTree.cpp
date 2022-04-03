@@ -178,7 +178,7 @@ int BinaryTree<T>::getNumSingleParent() const {
 
 template<class T>
 int BinaryTree<T>::getNumLeafNodes() const {
-    return 0;
+    return root->getNumLeafNodes();
 } //getNumLeafNodes
 
 template<class T>
@@ -244,6 +244,24 @@ int NodeType<T>::getNumSingleParent() const {
     } //if
     return i;
 } //getNumSingleParent
+
+template<class T>
+int NodeType<T>::getNumLeafNodes() const {
+    int b = 0;
+    int i = 0;
+    if (left != NULL) {
+        i += left->getNumLeafNodes();
+        b++;
+    } //if
+    if (right != NULL) {
+        i += right->getNumLeafNodes();
+        b++;
+    } //if
+    if (b == 0) {
+        i++;
+    } //if
+    return i;
+} //getNumLeafNodes
 
 template class BinaryTree<int>;
 template class BinaryTree<float>;

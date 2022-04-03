@@ -12,6 +12,7 @@ public:
     void preOrder() const;
     void postOrder() const;
     int getNumSingleParent() const;
+    int getNumLeafNodes() const;
 
 };
 
