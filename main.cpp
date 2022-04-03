@@ -109,7 +109,11 @@ void run(int argc, char *argv[]) {
                 cin >> sumTrees;
                 cout << "Sum of Subtrees: " << tree.getSumOfSubtrees(sumTrees) << endl;
             } catch (int num) {
-                cout << "Item not found. " << endl;
+                if (num == 0) {
+                    cout << "Item not found." << endl;
+                } else if  (num == 1) {
+                    cout << "No subtrees."<< endl;
+                } // else if
             } // catch
             continue;
         } // if

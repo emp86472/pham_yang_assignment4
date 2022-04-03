@@ -28,3 +28,18 @@ getSumOfSubtrees()
              temp go left
 T(N) = T(N/2)
 O(logn)
+
+How to compile:
+make compile
+
+How to link:
+make link
+
+How to run:
+./main <input file name>
+
+How to clean file:
+make clean
+
+Ethan pham worked on BinaryTree and Readme and makefile.
+Kevin Yang worked on main and Readme and makefile.
