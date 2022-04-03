@@ -26,6 +26,7 @@ void BinaryTree<T>::insert(T &key) {
 
     if (root == NULL) {
         root = node;
+        length++;
     } else {
         NodeType<T> *temp = root;
         NodeType<T> *pretemp;
@@ -81,6 +82,7 @@ void BinaryTree<T>::deleteItem(T &key) {
                     pretemp->left = NULL;
                 } //if
                 delete temp;
+                length--;
             } else if (temp->left == NULL) {//1 child
                 if (pretemp == NULL) {
                     root = temp->right;
@@ -92,6 +94,7 @@ void BinaryTree<T>::deleteItem(T &key) {
                     } //if
                 } //if
                 delete temp;
+                length--;
             } else if (temp->right == NULL) {//1 child
                 if (pretemp == NULL) {
                     root = temp->left;
@@ -103,6 +106,7 @@ void BinaryTree<T>::deleteItem(T &key) {
                     } //if
                 } //if
                 delete temp;
+                length--;
             } else { //if neither is null (2 children)
                 //find logical predecessor
                 pretemp = temp;
@@ -115,7 +119,6 @@ void BinaryTree<T>::deleteItem(T &key) {
                 this->deleteItem(value);
                 pretemp->data = value;
             } //if
-            length--;
             return;
         } else if (temp->data < key) {
             pretemp = temp;
@@ -181,6 +184,13 @@ int BinaryTree<T>::getNumLeafNodes() const {
 
 template<class T>
 T BinaryTree<T>::getSumOfSubtrees(NodeType<T> node) const {
+    if (node.left == NULL && node.right == NULL) {
+        throw 1;
+    } else if (node.left == NULL) {
+        return node.right->data;
+    } else if (node.right == NULL) {
+        return node.left->data;
+    } //if
     return node.left->data + node.right->data;
 } //getSumOfSubtrees
 
