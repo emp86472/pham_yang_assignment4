@@ -13,7 +13,7 @@ public:
     void postOrder() const;
     int getNumSingleParent() const;
     int getNumLeafNodes() const;
-
+    void deleteChildren() const;
 };
 
 template<class T>

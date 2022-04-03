@@ -12,7 +12,8 @@ BinaryTree<T>::BinaryTree() {
 
 template<class T>
 BinaryTree<T>::~BinaryTree() {
-
+    root->deleteChildren();
+    root = NULL;
 } //destructor
 
 template<class T>
@@ -269,6 +270,17 @@ int NodeType<T>::getNumLeafNodes() const {
     } //if
     return i;
 } //getNumLeafNodes
+
+template<class T>
+void NodeType<T>::deleteChildren() const {
+    if (left != NULL) {
+        left->deleteChildren();
+    } //if
+    if (right != NULL) {
+        right->deleteChildren();
+    } //if
+    delete this;
+} //deleteChildren
 
 template class BinaryTree<int>;
 template class BinaryTree<float>;
