@@ -104,12 +104,16 @@ void run(int argc, char *argv[]) {
         } // if
 
         if (command == 't') { // getSumOfSubtrees
-            cout << "Item to get sum of subtrees: ";
-            cin >> sumTrees;
-            cout << "Sum of Subtrees: " << tree.getSumOfSubtrees(sumTrees) << endl;;
-
+            try {
+                cout << "Item to get sum of subtrees: ";
+                cin >> sumTrees;
+                cout << "Sum of Subtrees: " << tree.getSumOfSubtrees(sumTrees) << endl;
+            } catch (int num) {
+                cout << "Item not found. " << endl;
+            } // catch
             continue;
         } // if
+
         if (command == 'o') { // post-order
             cout << "Post-Order: ";
             tree.postOrder();
