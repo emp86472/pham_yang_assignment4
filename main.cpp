@@ -83,6 +83,11 @@ void run(int argc, char *argv[]) {
             cout << endl;
             bool b = true;
             tree.retrieve(retrieve, b);
+            if (b == true) {
+                cout << "Item found in tree." << endl;
+            } else {
+                cout << "Item not in tree." << endl;
+            } // else
             continue;
         } // if
 
