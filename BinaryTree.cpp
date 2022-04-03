@@ -40,7 +40,7 @@ void BinaryTree<T>::insert(T &key) {
                 break;
             } //if
             if (temp->data == key) {
-                cout << "Duplicate item!" << endl;
+                cout << "Item already in tree." << endl;
                 break;
             } else if (temp->data < key) {
                 pretemp = temp;
@@ -65,7 +65,7 @@ void BinaryTree<T>::deleteItem(T &key) {
     NodeType<T> *temp = root;
     NodeType<T> *pretemp;
     if (root == NULL) {
-        cout  << "The list is empty :c" << endl;
+        cout  << "Item not in tree." << endl;
     } //if
     bool deleteRight = false;
     while (temp != NULL) {
@@ -126,14 +126,11 @@ void BinaryTree<T>::deleteItem(T &key) {
             deleteRight = false;
         } //if
     } //while
-    cout << "Item not in list" << endl;
+    cout << "Item not in tree." << endl;
 } //deleteItem
 
 template<class T>
 void BinaryTree<T>::retrieve(T &item, bool &found) const {
-    if (root == NULL) {
-        cout << "List is empty!" << endl;
-    } //if
     NodeType<T> *temp = root;
     while (temp != NULL) {
         if (temp->data == item) {
@@ -188,7 +185,17 @@ T BinaryTree<T>::getSumOfSubtrees(NodeType<T> node) const {
 
 template<class T>
 T BinaryTree<T>::getSumOfSubtrees(T value) const {
-    return value;
+    NodeType<T> *temp = root;
+    while (temp != NULL) {
+        if (temp->data == value) {
+            return getSumOfSubtrees(*temp);
+        } else if (temp->data < value) {
+            temp = temp->right;
+        } else if (temp->data > value) {
+            temp = temp->left;
+        } //if
+    } //while
+    throw 0;
 } //getSumOfSubtrees
 
 template<class T>
