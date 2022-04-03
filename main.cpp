@@ -47,6 +47,7 @@ void run(int argc, char *argv[]) {
             cin >> insert;
             cout << endl;
             tree.insert(insert);
+            cout << "In-Order: ";
             tree.inOrder();
             continue;
         } // if
@@ -56,6 +57,7 @@ void run(int argc, char *argv[]) {
             cin >> deleteItem;
             cout << endl;
             tree.deleteItem(deleteItem);
+            cout << "In-Order: ";
             tree.inOrder();
             continue;
         } // if
@@ -104,7 +106,8 @@ void run(int argc, char *argv[]) {
         if (command == 't') { // getSumOfSubtrees
             cout << "Item to get sum of subtrees: ";
             cin >> sumTrees;
-            cout << "Sum of Subtrees: " << tree.getSumOfSubtrees(sumTrees);
+            cout << "Sum of Subtrees: " << tree.getSumOfSubtrees(sumTrees) << endl;;
+
             continue;
         } // if
         if (command == 'o') { // post-order
