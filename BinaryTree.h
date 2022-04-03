@@ -11,6 +11,7 @@ public:
     void inOrder() const;
     void preOrder() const;
     void postOrder() const;
+    int getNumSingleParent() const;
 
 };
 
@@ -34,8 +35,8 @@ public:
     //the weird functions
     int getNumSingleParent() const; //num of nodes that have 1 child
     int getNumLeafNodes() const; //num of leaf nodes
-    int getSumOfSubtrees(NodeType<T> node) const;
-    int getSumOfSubtrees(T value) const;
+    T getSumOfSubtrees(NodeType<T> node) const;
+    T getSumOfSubtrees(T value) const;
 };
 
 #endif

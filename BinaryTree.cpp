@@ -173,7 +173,7 @@ int BinaryTree<T>::getLength() const {
 
 template<class T>
 int BinaryTree<T>::getNumSingleParent() const {
-    return 0;
+    return root->getNumSingleParent();
 } //getNumSingleParent
 
 template<class T>
@@ -182,13 +182,13 @@ int BinaryTree<T>::getNumLeafNodes() const {
 } //getNumLeafNodes
 
 template<class T>
-int BinaryTree<T>::getSumOfSubtrees(NodeType<T> node) const {
-    return 0;
+T BinaryTree<T>::getSumOfSubtrees(NodeType<T> node) const {
+    return node.left->data + node.right->data;
 } //getSumOfSubtrees
 
 template<class T>
-int BinaryTree<T>::getSumOfSubtrees(T value) const {
-    return 0;
+T BinaryTree<T>::getSumOfSubtrees(T value) const {
+    return value;
 } //getSumOfSubtrees
 
 template<class T>
@@ -226,6 +226,24 @@ void NodeType<T>::postOrder() const {
     cout << data;
     cout << " ";
 } //postOrder
+
+template<class T>
+int NodeType<T>::getNumSingleParent() const {
+    int b = 0;
+    int i = 0;
+    if (left != NULL) {
+        i += left->getNumSingleParent();
+        b++;
+    } //if
+    if (right != NULL) {
+        i += right->getNumSingleParent();
+        b++;
+    } //if
+    if (b == 1) {
+        i++;
+    } //if
+    return i;
+} //getNumSingleParent
 
 template class BinaryTree<int>;
 template class BinaryTree<float>;
